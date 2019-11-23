@@ -1,0 +1,24 @@
+version: '3'
+volumes:
+  dados:
+services:
+  db:
+    image: store/oracle/database-enterprise:12.2.0.1
+    volumes:
+      - dados:/var/lib/postgresql/data
+      - ./scripts:/scripts
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 1521:1521
+  frontend:
+    image: nginx:1.13
+    volumes:
+      - ./front:/usr/share/nginx/html/
+    ports:
+      - 80:80
+  web:
+    build: .
+    ports:
+      - 5000:5000
+  redis:
+    image: "redis:alpine"

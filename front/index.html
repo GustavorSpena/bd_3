@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Base de Dados - Projeto Completo</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>      
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="./scripts/pagina-inicial.js"></script>
+    </head>
+    <body>
+        <div class="d-flex" id="wrapper">
+            <!-- Sidebar -->
+            <div class="bg-light border-right" id="sidebar-wrapper">
+                <div class="sidebar-heading">Start Bootstrap </div>
+                <div class="list-group list-group-flush">
+                <a href="#" class="list-group-item list-group-item-action bg-light">Novo evento</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Eventos</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Empresas</a>
+                </div>
+            </div>
+            <!-- /#sidebar-wrapper -->
+        
+            <!-- Page Content -->
+            <div style="width: 100%;" id="page-content-wrapper">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul style="width: 100%; display: flex; justify-content: center; align-items: center;" class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <p style="margin-bottom: 0; font-size: 22px;">SCC0640 - Base de Dados</p>
+                    </ul>
+                </div>
+                </nav>
+                <div class="container-fluid">
+                    <h1 class="mt-4">Games XP - Página de Backoffice</h1>
+                    <h2>Novo evento</h2>
+                    <form id="formNovoEvento">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Ano</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insira o ano do evento">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Titulo</label>
+                            <input type="text" class="form-control" id="passwordInput" placeholder="Insira o titulo do evento">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
