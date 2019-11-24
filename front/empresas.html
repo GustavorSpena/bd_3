@@ -51,21 +51,73 @@
                 </div>
                 </nav>
                 <div class="container-fluid">
-                    <h1 class="mt-4">Games XP - Página de Backoffice</h1>
-                    <h2>Novo evento</h2>
-                    <form id="formNovoEvento">
+                    <h1 class="mt-4">Games XP</h1>
+                    <h2>Empresas por ano</h2>
+                    <p>São mostrados também o valor pago e o feedback para cada empresa</p>
+                    <form id="formEmpresas">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Ano</label>
+                            <label for="exampleInputEmail1">Deseja listar as empresas de qual ano?</label>
                             <input type="text" class="form-control" id="inputAno" aria-describedby="emailHelp" placeholder="Insira o ano do evento">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Titulo</label>
-                            <input type="text" class="form-control" id="inputTitulo" placeholder="Insira o titulo do evento">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
+                    <div>
+                        <table id="listaEmpresas">
+                            <tr>
+                                <th>CNPJ</th>
+                                <th>Nome</th>
+                                <th>Setor</th>
+                                <th>Valor Pago</th>
+                                <th>Feedback</th>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </body>
+<script>
+    function gerarHTMLEmpresa(empresa){
+        return "<tr><td>" + empresa[0] + "</td><td>" + empresa[1] + "</td><td>" + empresa[2] + "</td><td>" + empresa[3] + "</td><td>" + empresa[4] + "</td></tr>"
+    }
+    $(function(){
+        $('#formEmpresas').submit(function(e){
+            e.preventDefault();
+            ano = $('#inputAno').val();
+            $.ajax({
+                type: 'GET',
+                url: URL + "/api/empresas?ano="+ano,
+                success: function(data, textStatus) {
+                    $('.loader-container').hide();
+                    // Limpar lista
+                    $('#listaEmpresas').html(`
+                        <tr>
+                            <th>CNPJ</th>
+                            <th>Nome</th>
+                            <th>Setor</th>
+                            <th>Valor Pago</th>
+                            <th>Feedback</th>
+                        </tr>
+                    `);
+                    
+                    if(data.data.length === 0) {
+                        // Não há empresas para esse ano
+                        $('#listaEmpresas').append("<p>Não há empresas para este ano.</p>");                    
+                    } else {
+                        // Gerar linha na tabela para cada empresa
+                        for(i = 0; i < data.data.length; i++) {
+                            html = gerarHTMLEmpresa(data.data[i])
+                            $('#listaEmpresas').append(html);
+                        }
+                    }
+
+                },
+                error: function(xhr, textStatus) {
+                    toastr.error(xhr.responseJSON.error)
+                }
+            }); 
+        })
+    })
+</script>
+
 </html>

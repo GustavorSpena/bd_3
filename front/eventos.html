@@ -51,21 +51,66 @@
                 </div>
                 </nav>
                 <div class="container-fluid">
-                    <h1 class="mt-4">Games XP - Página de Backoffice</h1>
-                    <h2>Novo evento</h2>
-                    <form id="formNovoEvento">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Ano</label>
-                            <input type="text" class="form-control" id="inputAno" aria-describedby="emailHelp" placeholder="Insira o ano do evento">
+                    <h1 class="mt-4">Games XP</h1>
+                    <h2>Eventos cadastrados</h2>
+                    <div>
+                        <table id="listaEventos">
+                            <tr>
+                                <th>Ano</th>
+                                <th>Titulo</th>
+                            </tr>
+                        </table>
+                        <div class="loader-container">
+                            <div class="loader"></div>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Titulo</label>
-                            <input type="text" class="form-control" id="inputTitulo" placeholder="Insira o titulo do evento">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </body>
+    <style>
+    .loader-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .loader {
+        border: 16px solid #f3f3f3; /* Light grey */
+        border-top: 16px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 80px;
+        height:80px;
+        animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+
+<script>
+    function gerarHTMLEvento(evento){
+        return "<tr><td>" + evento[0] + "</td><td>" + evento[1] + "</td></tr>"
+    }
+    $(function(){
+        $.ajax({
+            type: 'GET',
+            url: URL + "/api/lista_eventos",
+            success: function(data, textStatus) {
+                console.log(data.data)
+                $('.loader-container').hide();
+                for(i = 0; i < data.data.length; i++) {
+                    html = gerarHTMLEvento(data.data[i])
+                    $('#listaEventos').append(html);
+                }
+            },
+            error: function(xhr, textStatus) {
+                toastr.error(xhr.responseJSON.error)
+            }
+        }); 
+    })
+</script>
+
 </html>
