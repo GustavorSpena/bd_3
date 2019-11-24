@@ -2,6 +2,5 @@
 # docker login 
 
 ## Passos:
-# 1 - docker-compose build
-# 2 - docker-compose up -d
-# 3 - Acessar http://localhost
+# 1 - docker-compose up -d
+# 2 - Acessar http://localhost
