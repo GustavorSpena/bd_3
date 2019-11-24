@@ -7,6 +7,27 @@
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="./scripts/pagina-inicial.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <script>
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-center",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+    </script>
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -36,11 +57,11 @@
                     <form id="formNovoEvento">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Ano</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Insira o ano do evento">
+                            <input type="text" class="form-control" id="inputAno" aria-describedby="emailHelp" placeholder="Insira o ano do evento">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Titulo</label>
-                            <input type="text" class="form-control" id="passwordInput" placeholder="Insira o titulo do evento">
+                            <input type="text" class="form-control" id="inputTitulo" placeholder="Insira o titulo do evento">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
